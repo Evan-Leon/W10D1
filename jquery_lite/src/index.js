@@ -1,17 +1,21 @@
+const DOMNodeCollection = require("./dom_node_collection");
+
 function $l(selector) {
     let nodeArr = [];
     if (typeof selector === 'string') {
         let selected = document.querySelectorAll(selector);
         selected.forEach( function(node) {
-            nodeArr.push(node)
+            nodeArr.push(node);
         })
-    }
+    }else if (selector instanceof HTMLElement){
+        nodeArr.push(selector);
+    };
 
-    return nodeArr;
+    return new DOMNodeCollection(nodeArr);
 
 }
 
 
-
+// window.test = new DOMNodeCollection();
 window.$l = $l;
 
