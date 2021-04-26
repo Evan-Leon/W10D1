@@ -7,7 +7,7 @@ function $l(selector) {
         selected.forEach( function(node) {
             nodeArr.push(node);
         })
-    }else if (selector instanceof HTMLElement){
+    } else if (selector instanceof HTMLElement){
         nodeArr.push(selector);
     };
 
