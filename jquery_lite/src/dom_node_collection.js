@@ -20,6 +20,34 @@ class DOMNodeCollection{
         })
     }
 
+    append(arg) {
+        this.arr.forEach(el => el.innerHTML += arg);
+    }
+
+    attr(key , value){
+
+        //Object.values(el.attributes)gives us array of htmlelement attributes
+        // 
+
+        if (value){
+            for (let el of this.arr){
+                return el.setAttribute(key, value);
+            }
+        }else{ 
+            return this.arr[0].getAttribute(key);
+        //(return attributes for value with that key)
+        }
+      
+    }
+
+    addClass(){
+
+    }
+
+    removeClass(){
+
+    }
+
 }
 
 // empty

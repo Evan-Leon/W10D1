@@ -9,7 +9,11 @@ function $l(selector) {
         })
     } else if (selector instanceof HTMLElement){
         nodeArr.push(selector);
-    };
+    } else {
+        selector.each(function (idx, el){
+            nodeArr.push(el);
+        }) 
+    }
 
     return new DOMNodeCollection(nodeArr);
 

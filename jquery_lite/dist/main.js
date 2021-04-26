@@ -15,7 +15,7 @@
   \************************************/
 /***/ ((module) => {
 
-eval("class DOMNodeCollection{\n    constructor(arr){\n        this.arr = arr;\n    }\n    \n    html(str) {\n        let nodeHTML = this.arr;\n        if (str) {\n            nodeHTML.forEach( el => {\n                el.innerHTML = str;\n            })\n        } else {\n            return this.arr[0].innerHTML\n        }\n    }\n\n    empty() {\n        this.arr.forEach( el => {\n            el.innerHTML = ''\n        })\n    }\n\n}\n\n// empty\n// This method clears out the content of all nodes in the internal array.I set the html of all nodes to an empty string.\n\n\n\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+eval("class DOMNodeCollection{\n    constructor(arr){\n        this.arr = arr;\n    }\n    \n    html(str) {\n        let nodeHTML = this.arr;\n        if (str) {\n            nodeHTML.forEach( el => {\n                el.innerHTML = str;\n            })\n        } else {\n            return this.arr[0].innerHTML\n        }\n    }\n\n    empty() {\n        this.arr.forEach( el => {\n            el.innerHTML = ''\n        })\n    }\n\n    append(arg) {\n        this.arr.forEach(el => el.innerHTML += arg);\n    }\n\n    attr(key , value){\n\n        //Object.values(el.attributes)gives us array of htmlelement attributes\n        // \n\n        if (value){\n            for (let el of this.arr){\n                return el.setAttribute(key, value);\n            }\n        }else{ \n            return this.arr[0].getAttribute(key);\n        //(return attributes for value with that key)\n        }\n      \n    }\n\n    addClass(){\n\n    }\n\n    removeClass(){\n\n    }\n\n}\n\n// empty\n// This method clears out the content of all nodes in the internal array.I set the html of all nodes to an empty string.\n\n\n\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("class DOMNodeCollection{\n    constructor(arr){\n        this.arr = arr;\n
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nfunction $l(selector) {\n    let nodeArr = [];\n    if (typeof selector === 'string') {\n        let selected = document.querySelectorAll(selector);\n        selected.forEach( function(node) {\n            nodeArr.push(node);\n        })\n    } else if (selector instanceof HTMLElement){\n        nodeArr.push(selector);\n    };\n\n    return new DOMNodeCollection(nodeArr);\n\n}\n\n\n// window.test = new DOMNodeCollection();\nwindow.$l = $l;\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nfunction $l(selector) {\n    let nodeArr = [];\n    if (typeof selector === 'string') {\n        let selected = document.querySelectorAll(selector);\n        selected.forEach( function(node) {\n            nodeArr.push(node);\n        })\n    } else if (selector instanceof HTMLElement){\n        nodeArr.push(selector);\n    } else {\n        selector.each(function (idx, el){\n            nodeArr.push(el);\n        }) \n    }\n\n    return new DOMNodeCollection(nodeArr);\n\n}\n\n\n// window.test = new DOMNodeCollection();\nwindow.$l = $l;\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
